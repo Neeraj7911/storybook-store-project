@@ -1,0 +1,41 @@
+.theme-selection {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.theme-selection h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.theme-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.theme-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .theme-selection h2 {
+    font-size: 1.5rem;
+  }
+
+  .theme-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
