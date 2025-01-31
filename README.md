@@ -40,4 +40,5 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Neeraj7911/custom-storybook.git
+   git clone https://github.com/Neeraj7911/storybook-store-project.git
+   
