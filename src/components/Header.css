@@ -1,41 +1,226 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  height: 80px;
+  overflow: visible;
 }
 
-.logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
+.header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  opacity: 0.8;
+}
+
+.header-blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  transition: transform 0.1s ease-out;
+}
+
+.header-content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  z-index: 1001;
+}
+
+.logo-svg {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 8;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: draw-logo 2s forwards;
+}
+
+@keyframes draw-logo {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.logo-text {
+  opacity: 0;
+  animation: fade-in 0.5s 1.5s forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
 }
 
 .nav ul {
   display: flex;
   list-style-type: none;
+  gap: 2rem;
+  padding-left: 0;
 }
 
-.nav li {
-  margin-left: 2rem;
-}
-
-.nav a {
+.nav-link {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-text {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover .nav-highlight {
+  transform: scaleX(1);
+}
+
+.user-profile {
+  position: relative;
+  z-index: 1001;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  border: 2px solid #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.username {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 0.5rem;
+  min-width: 150px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background-color: rgba(110, 142, 251, 0.1);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  z-index: 1001;
+}
+
+.auth-buttons button {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+}
+
+.login-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.signup-btn {
+  background-color: #fff;
+  color: #6e8efb;
+}
+
+.auth-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .menu-toggle {
   display: none;
   cursor: pointer;
+  z-index: 1001;
 }
 
 .hamburger {
@@ -77,84 +262,114 @@
 }
 
 @media (max-width: 768px) {
+  .header-content {
+    justify-content: center;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo-text {
+    display: none;
+  }
+
   .nav {
     display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(110, 142, 251, 0.95);
+    padding: 1rem;
+    overflow-y: auto;
   }
 
   .nav.open {
     display: block;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.9);
   }
 
   .nav ul {
     flex-direction: column;
-    padding: 1rem;
+    gap: 1rem;
+    align-items: center;
   }
 
-  .nav li {
-    margin: 1rem 0;
+  .nav-link {
+    font-size: 1.2rem;
   }
 
   .menu-toggle {
     display: block;
+    position: absolute;
+    left: 1rem;
   }
+
+  .auth-buttons {
+    position: absolute;
+    right: 1rem;
+  }
+
+  .auth-buttons button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .user-profile {
+    position: absolute;
+    right: 1rem;
+  }
+
+  .profile-trigger {
+    padding: 0.25rem;
+  }
+
+  .profile-image {
+    width: 32px;
+    height: 32px;
+    margin-right: 0;
+  }
+
+  .username {
+    display: none;
+  }
+
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .header-content {
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  .logo {
+    order: 1;
+  }
+
+  .nav {
+    order: 2;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav ul {
+    justify-content: center;
+  }
+
   .user-profile,
   .auth-buttons {
-    margin-right: 3rem;
+    order: 3;
   }
-}
 
-.user-profile {
-  position: relative;
-}
-
-.profile-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  padding: 0.5rem;
-  min-width: 150px;
-}
-
-.dropdown-menu a,
-.dropdown-menu button {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-  text-align: left;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-menu a:hover,
-.dropdown-menu button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 1rem;
-}
-
-.auth-buttons button {
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
+  .menu-toggle {
+    display: none;
+  }
 }
