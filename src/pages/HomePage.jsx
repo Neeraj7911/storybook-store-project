@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import BookAnimation from "../components/BookAnimation";
+import ParticleEffect from "../components/ParticleEffect";
 import "./HomePage.css";
+
 const HomePage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const canvasRef = useRef(null);
+
+  const handleMouseMove = useCallback((e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [handleMouseMove]);
 
   return (
     <div className="home-page">
@@ -25,7 +29,9 @@ const HomePage = () => {
               mousePosition.y / 50
             }px`,
           }}
+          transition={{ type: "tween", ease: "linear" }}
         />
+        <ParticleEffect canvasRef={canvasRef} mousePosition={mousePosition} />
         <div className="hero-content">
           <motion.h1
             initial={{ opacity: 0, y: -50 }}

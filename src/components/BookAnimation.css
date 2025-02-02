@@ -1,0 +1,23 @@
+.book-animation-container {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+}
+
+.floating-book {
+  position: relative;
+  z-index: 2;
+}
+
+.book-shadow {
+  position: absolute;
+  bottom: -10px;
+  left: 10px;
+  width: 80px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  filter: blur(4px);
+}

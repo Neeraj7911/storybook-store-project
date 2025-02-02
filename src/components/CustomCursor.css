@@ -1,12 +1,34 @@
-.custom-cursor {
+.cursor-ring {
   position: fixed;
   left: 0;
   top: 0;
   width: 32px;
   height: 32px;
-  border: 2px solid #fff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+}
+
+body {
+  cursor: none;
+}
+
+a,
+button {
+  cursor: none;
 }

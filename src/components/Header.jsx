@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../contexts/AuthContext";
@@ -57,14 +57,16 @@ const Header = () => {
     return fullName ? fullName.split(" ")[0] : "User";
   };
 
+  const navItems = ["Create", "Explore", "About"];
+
   return (
     <header className="header">
       <div className="header-background">
         <div
           className="header-blob"
           style={{
-            transform: `translate(${mousePosition.x * 0.05}px, ${
-              mousePosition.y * 0.05
+            transform: `translate(${mousePosition.x * 0.02}px, ${
+              mousePosition.y * 0.02
             }px)`,
           }}
         ></div>
@@ -76,15 +78,17 @@ const Header = () => {
         <Link to="/" className="logo">
           <svg viewBox="0 0 200 200" className="logo-svg">
             <path
-              d="M 100 0 L 0 100 L 100 200 L 200 100 Z"
+              d="M100 20L20 100l80 80 80-80z"
               className="logo-path"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <span className="logo-text">StoryMaker</span>
         </Link>
         <nav className={`nav ${isOpen ? "open" : ""}`}>
           <motion.ul>
-            {["Create", "Explore", "About"].map((item, index) => (
+            {navItems.map((item, index) => (
               <motion.li
                 key={item}
                 initial={{ opacity: 0, y: -20 }}
