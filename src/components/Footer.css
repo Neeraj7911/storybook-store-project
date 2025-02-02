@@ -1,26 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
 .footer {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 3rem 2rem 1rem;
+  background: linear-gradient(135deg, #1a1c20 0%, #0d0e10 100%);
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  overflow: hidden;
 }
 
 .footer-content {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
+  align-items: flex-start;
+  max-width: 100%;
   margin: 0 auto;
+  padding: 2rem 0px;
+}
+
+.footer-brand {
+  flex: 1;
+}
+
+.footer-logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 8s infinite alternate;
+}
+
+.footer-slogan {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.footer-sections {
+  flex: 2;
+  display: flex;
+  justify-content: space-around;
 }
 
 .footer-section {
   flex: 1;
-  margin-bottom: 2rem;
-  min-width: 200px;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+}
+
+.footer-section.active {
+  transform: translateY(-10px);
 }
 
 .footer-section h3 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.footer-section h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  transition: width 0.3s ease;
+}
+
+.footer-section.active h3::after {
+  width: 50px;
+}
+
+.footer-section p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
 }
 
 .footer-section ul {
@@ -28,13 +85,27 @@
   padding: 0;
 }
 
-.footer-section li {
+.footer-section ul li {
   margin-bottom: 0.5rem;
 }
 
 .footer-section a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #feca57;
+}
+
+.footer-bottom {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .social-icons {
@@ -42,15 +113,35 @@
   gap: 1rem;
 }
 
-.social-icons a {
+.social-icon {
   font-size: 1.5rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.social-icon:hover {
+  color: #feca57;
+  transform: translateY(-3px) rotate(5deg);
+}
+
+.social-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+@keyframes colorShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {
@@ -58,7 +149,32 @@
     flex-direction: column;
   }
 
+  .footer-brand {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .footer-sections {
+    flex-direction: column;
+  }
+
   .footer-section {
-    margin-bottom: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-sections {
+    flex-wrap: wrap;
+  }
+
+  .footer-section {
+    flex-basis: calc(50% - 2rem);
+    margin-bottom: 2rem;
   }
 }
