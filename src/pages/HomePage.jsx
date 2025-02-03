@@ -2,10 +2,12 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import BookAnimation from "../components/BookAnimation";
 import ParticleEffect from "../components/ParticleEffect";
+import Modal from "../components/Modal";
 import "./HomePage.css";
 
 const HomePage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const canvasRef = useRef(null);
 
   const handleMouseMove = useCallback((e) => {
@@ -18,6 +20,10 @@ const HomePage = () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [handleMouseMove]);
+
+  const handleOpenBook = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="home-page">
@@ -58,8 +64,28 @@ const HomePage = () => {
             Start Your Adventure
           </motion.button>
         </div>
-        <BookAnimation />
+        <BookAnimation onOpenBook={handleOpenBook} />
       </section>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div className="modal-content">
+          <h2>Your Love Story Journey</h2>
+          <p>This is where your personalized love story begins!</p>
+          <p>Follow these steps to create your magical storybook:</p>
+          <ol>
+            <li>Choose your characters and setting</li>
+            <li>Craft your unique love story</li>
+            <li>Select beautiful illustrations</li>
+            <li>Review and customize your book</li>
+            <li>Order your personalized storybook</li>
+          </ol>
+          <button
+            className="start-journey-button"
+            onClick={() => setIsModalOpen(false)}
+          >
+            Begin Your Journey
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import CustomCursor from "./components/CustomCursor";
 //import Background3D from "./components/Background3D";
+import BookAnimation from "./components/BookAnimation";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <AuthProvider>
         <div className="App">
           <CustomCursor />
+          <BookAnimation />
 
           <Header />
           <Routes>
