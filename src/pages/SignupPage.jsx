@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -9,6 +9,34 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/config";
 import "./SignupPage.css";
+
+const BackgroundEffect = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div className="background-effect">
+      <div
+        className="glow"
+        style={{
+          left: mousePosition.x,
+          top: mousePosition.y,
+        }}
+      ></div>
+    </div>
+  );
+};
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
@@ -78,6 +106,7 @@ const SignupPage = () => {
 
   return (
     <div className="signup-page">
+      <BackgroundEffect />
       <motion.div
         className="signup-form-container"
         initial={{ opacity: 0, y: 50 }}
