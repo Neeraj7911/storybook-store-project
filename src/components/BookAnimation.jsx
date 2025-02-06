@@ -227,30 +227,45 @@ const BookContent = () => {
   const pages = [
     {
       icon: "📚",
-      title: "Welcome to Your Journey",
+      title: "Your Story, Your Book – A Memory for a Lifetime!",
       content:
-        "Embark on an adventure through the pages of knowledge and imagination.",
-      image: "https://source.unsplash.com/random/400x300?book",
+        "Ever dreamed of being the hero of your own story? With our personalized storybooks, you can bring your memories to life in a beautifully crafted book. Let’s get started!",
+      image: <img src="/Modal1.svg" alt="Modal1" />,
     },
     {
       icon: "🌟",
-      title: "Chapter 1: The Beginning",
+      title: "Choose Your Story ThemePick a Story, Make It Yours!",
       content:
-        "Every great story starts with a single step. Are you ready to take yours?",
+        "Choose from exciting themes—magical adventures, space explorations, fairytale lands, and more. Every story is crafted to make you the star!",
       image: "https://source.unsplash.com/random/400x300?journey",
     },
     {
       icon: "🚀",
-      title: "Chapter 2: The Adventure",
+      title: "Add Your Photos – Be the Star!",
       content:
-        "Challenges await, but so do incredible discoveries. Let's explore together!",
+        "Upload 8-10 pictures of yourself or your loved ones. Our smart AI will seamlessly blend them into the story, making it truly personal!",
       image: "https://source.unsplash.com/random/400x300?adventure",
     },
     {
       icon: "🏆",
-      title: "Chapter 3: The Achievement",
+      title: "Your Name, Your Adventure!",
       content:
-        "Your hard work pays off. Celebrate your growth and look forward to new horizons.",
+        "Add names, fun details, and personal messages. Your story will feel like it was written just for you!",
+      image: "https://source.unsplash.com/random/400x300?achievement",
+    },
+
+    {
+      icon: "🏆",
+      title: "Your Story, Ready to Print!",
+      content:
+        "Choose between a beautifully printed hardcover book or a digital PDF version. Pay securely and let us handle the rest!",
+      image: "https://source.unsplash.com/random/400x300?achievement",
+    },
+    {
+      icon: "🏆",
+      title: "Delivered to Your Doorstep!",
+      content:
+        "We print, pack, and ship your storybook with love! Get ready to hold your personalized story in your hands.",
       image: "https://source.unsplash.com/random/400x300?achievement",
     },
   ];
