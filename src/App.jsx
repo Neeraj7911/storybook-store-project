@@ -10,6 +10,8 @@ import CustomCursor from "./components/CustomCursor";
 //import Background3D from "./components/Background3D";
 //import BookAnimation from "./components/BookAnimation";
 import "./App.css";
+import Explore from "./pages/ExplorePage";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/about" element={<AboutUs />} />
           </Routes>
           <Footer />
         </div>

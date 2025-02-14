@@ -230,28 +230,28 @@ const BookContent = () => {
       title: "Your Story, Your Book – A Memory for a Lifetime!",
       content:
         "Ever dreamed of being the hero of your own story? With our personalized storybooks, you can bring your memories to life in a beautifully crafted book. Let’s get started!",
-      image: <img src="/Modal1.svg" alt="Modal1" />,
+      image: "/pic1.jpeg",
     },
     {
       icon: "🌟",
       title: "Choose Your Story ThemePick a Story, Make It Yours!",
       content:
         "Choose from exciting themes—magical adventures, space explorations, fairytale lands, and more. Every story is crafted to make you the star!",
-      image: "https://source.unsplash.com/random/400x300?journey",
+      image: "/pic1.jpeg",
     },
     {
       icon: "🚀",
       title: "Add Your Photos – Be the Star!",
       content:
         "Upload 8-10 pictures of yourself or your loved ones. Our smart AI will seamlessly blend them into the story, making it truly personal!",
-      image: "https://source.unsplash.com/random/400x300?adventure",
+      image: "/pic1.jpeg",
     },
     {
       icon: "🏆",
       title: "Your Name, Your Adventure!",
       content:
         "Add names, fun details, and personal messages. Your story will feel like it was written just for you!",
-      image: "https://source.unsplash.com/random/400x300?achievement",
+      image: "/pic1.jpeg",
     },
 
     {
@@ -259,14 +259,14 @@ const BookContent = () => {
       title: "Your Story, Ready to Print!",
       content:
         "Choose between a beautifully printed hardcover book or a digital PDF version. Pay securely and let us handle the rest!",
-      image: "https://source.unsplash.com/random/400x300?achievement",
+      image: "/pic1.jpeg",
     },
     {
       icon: "🏆",
       title: "Delivered to Your Doorstep!",
       content:
         "We print, pack, and ship your storybook with love! Get ready to hold your personalized story in your hands.",
-      image: "https://source.unsplash.com/random/400x300?achievement",
+      image: "/pic1.jpeg",
     },
   ];
 
