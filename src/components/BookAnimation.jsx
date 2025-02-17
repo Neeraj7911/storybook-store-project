@@ -227,7 +227,7 @@ const BookContent = () => {
   const pages = [
     {
       icon: "📚",
-      title: "Your Story, Your Book – A Memory for a Lifetime!",
+      title: "Your Story , Your Book – A Memory for a Lifetime!",
       content:
         "Ever dreamed of being the hero of your own story? With our personalized storybooks, you can bring your memories to life in a beautifully crafted book. Let’s get started!",
       image: "/pic1.jpeg",
