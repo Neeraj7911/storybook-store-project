@@ -1,143 +1,140 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import React, { useState, useEffect, useRef } from "react";
 import "./Book.css";
 
 const Book = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [direction, setDirection] = useState(null);
+  const [showInstructions, setShowInstructions] = useState(true);
   const bookRef = useRef(null);
-  const pagesRef = useRef([]);
 
   const pages = [
     {
-      content: "Once upon a time in a magical forest...",
-      image: "/placeholder.svg?height=400&width=300",
+      type: "cover",
+      title: "The Magical Journey",
+      subtitle: "An Interactive Adventure",
     },
     {
-      content: "There lived a wise old owl named Oliver...",
-      image: "/placeholder.svg?height=400&width=300",
+      type: "content",
+      image: "https://picsum.photos/300/400?random=1",
+      text: "Once upon a time, in a land far away...",
     },
     {
-      content: "Oliver had many animal friends in the forest...",
-      image: "/placeholder.svg?height=400&width=300",
+      type: "content",
+      image: "https://picsum.photos/300/400?random=2",
+      text: "There was a brave knight named Sir Galahad...",
     },
     {
-      content: "One day, they decided to have a grand feast...",
-      image: "/placeholder.svg?height=400&width=300",
+      type: "content",
+      image: "https://picsum.photos/300/400?random=3",
+      text: "He embarked on a perilous quest to save the kingdom...",
     },
     {
-      content: "And they all lived happily ever after.",
-      image: "/placeholder.svg?height=400&width=300",
+      type: "content",
+      image: "https://picsum.photos/300/400?random=4",
+      text: "Facing dragons, witches, and treacherous terrains...",
     },
+    {
+      type: "content",
+      image: "https://picsum.photos/300/400?random=5",
+      text: "Sir Galahad's courage never wavered...",
+    },
+    { type: "backcover", text: "The End", author: "Written by AI Assistant" },
   ];
 
   useEffect(() => {
-    gsap.set(bookRef.current, { rotationY: -20 });
-    gsap.set(pagesRef.current, {
-      rotationY: (i) => i * -0.5,
-      transformOrigin: "left center",
-      z: (i) => i * -0.1,
-    });
-  }, []);
+    const timer = setTimeout(() => {
+      setDirection(null);
+    }, 500);
 
-  const openBook = () => {
-    setIsOpen(true);
-    gsap.to(bookRef.current, {
-      rotationY: 0,
-      duration: 1.5,
-      ease: "power3.inOut",
-    });
-    gsap.to(pagesRef.current, {
-      rotationY: 0,
-      z: 0,
-      stagger: 0.1,
-      duration: 1,
-      ease: "power2.inOut",
-    });
-  };
+    return () => clearTimeout(timer);
+  }, [currentPage]);
 
-  const closeBook = () => {
-    setIsOpen(false);
-    gsap.to(bookRef.current, {
-      rotationY: -20,
-      duration: 1.5,
-      ease: "power3.inOut",
-    });
-    gsap.to(pagesRef.current, {
-      rotationY: (i) => i * -0.5,
-      z: (i) => i * -0.1,
-      stagger: 0.1,
-      duration: 1,
-      ease: "power2.inOut",
-    });
-    setCurrentPage(0);
-  };
-
-  const turnPage = (direction) => {
-    if (direction === "next" && currentPage < pages.length - 1) {
-      gsap.to(pagesRef.current[currentPage], {
-        rotationY: -180,
-        duration: 1,
-        ease: "power2.inOut",
-      });
+  const nextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setDirection("next");
       setCurrentPage(currentPage + 1);
-    } else if (direction === "prev" && currentPage > 0) {
-      gsap.to(pagesRef.current[currentPage - 1], {
-        rotationY: 0,
-        duration: 1,
-        ease: "power2.inOut",
-      });
+      setShowInstructions(false);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setDirection("prev");
       setCurrentPage(currentPage - 1);
+      setShowInstructions(false);
+    }
+  };
+
+  const handleBookClick = (e) => {
+    const bookWidth = bookRef.current.offsetWidth;
+    const clickX = e.nativeEvent.offsetX;
+
+    if (clickX > bookWidth / 2) {
+      nextPage();
+    } else {
+      prevPage();
     }
   };
 
   return (
-    <div className={`book-wrapper ${isOpen ? "open" : ""}`}>
-      <div className="book-container">
-        <div className="book" ref={bookRef}>
-          <div className="book-cover front" onClick={openBook}>
-            <h1>The Magical Forest</h1>
-            <p>An enchanting tale</p>
-          </div>
-          {pages.map((page, index) => (
-            <div
-              key={index}
-              className="page"
-              ref={(el) => (pagesRef.current[index] = el)}
-            >
-              <div className="page-front">
+    <div className="interactive-book-container">
+      <div className="interactive-book" ref={bookRef} onClick={handleBookClick}>
+        {pages.map((page, index) => (
+          <div
+            key={index}
+            className={`book-page ${page.type} ${
+              index === currentPage ? "active" : ""
+            } ${
+              direction === "next" && index === currentPage - 1
+                ? "slide-out-left"
+                : direction === "prev" && index === currentPage + 1
+                ? "slide-out-right"
+                : ""
+            }`}
+            style={{
+              zIndex: pages.length - Math.abs(index - currentPage),
+              transform: `translateZ(${-Math.abs(index - currentPage) * 5}px)`,
+            }}
+          >
+            {page.type === "cover" && (
+              <div className="cover-content">
+                <h1>{page.title}</h1>
+                <h2>{page.subtitle}</h2>
+              </div>
+            )}
+            {page.type === "content" && (
+              <div className="page-content">
                 <img
                   src={page.image || "/placeholder.svg"}
                   alt={`Page ${index + 1}`}
                 />
-                <p>{page.content}</p>
+                <p>{page.text}</p>
               </div>
-              <div className="page-back"></div>
-            </div>
-          ))}
-          <div className="book-cover back"></div>
-        </div>
+            )}
+            {page.type === "backcover" && (
+              <div className="backcover-content">
+                <h2>{page.text}</h2>
+                <p>{page.author}</p>
+              </div>
+            )}
+          </div>
+        ))}
+        {showInstructions && (
+          <div className="instructions">
+            <div className="instruction left">Click here for previous page</div>
+            <div className="instruction right">Click here for next page</div>
+          </div>
+        )}
       </div>
       <div className="book-controls">
-        <button
-          onClick={() => turnPage("prev")}
-          disabled={currentPage === 0 || !isOpen}
-        >
+        <button onClick={prevPage} disabled={currentPage === 0}>
           Previous
         </button>
-        <button onClick={isOpen ? closeBook : openBook}>
-          {isOpen ? "Close Book" : "Open Book"}
-        </button>
-        <button
-          onClick={() => turnPage("next")}
-          disabled={currentPage === pages.length - 1 || !isOpen}
-        >
+        <span>{`Page ${currentPage + 1} of ${pages.length}`}</span>
+        <button onClick={nextPage} disabled={currentPage === pages.length - 1}>
           Next
         </button>
       </div>
-      {!isOpen && <div className="book-sparkle"></div>}
     </div>
   );
 };
