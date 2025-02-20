@@ -10,35 +10,47 @@ const Book = () => {
   const pages = [
     {
       type: "cover",
-      title: "The Magical Journey",
+      title: "The Book of You",
       subtitle: "An Interactive Adventure",
     },
     {
       type: "content",
-      image: "https://picsum.photos/300/400?random=1",
-      text: "Once upon a time, in a land far away...",
+      image: "./pic2.jpeg",
+      text: `On a bright morning, Aarav heard the doorbell ring. A small, neatly wrapped package sat at the doorstep. The tag read:
+
+"For the hero of this story – You."
+
+Curious, they opened the package. Inside was a beautiful book, its cover shimmering with golden letters spelling their name.`,
     },
     {
       type: "content",
-      image: "https://picsum.photos/300/400?random=2",
-      text: "There was a brave knight named Sir Galahad...",
+      image: "./pic3.jpeg",
+      text: `As soon as they turned the first page, something magical happened. The words lifted off the paper, swirling into a glowing light. Suddenly, they were no longer in their room.
+
+They stood in a grand castle, wearing a hero’s cape. A wise owl flapped its wings and said, "You are the chosen one. The kingdom needs your help."`,
     },
     {
       type: "content",
-      image: "https://picsum.photos/300/400?random=3",
-      text: "He embarked on a perilous quest to save the kingdom...",
+      image: "./pic4.jpeg",
+      text: `Through forests and rivers, past mountains and stars, Aarav bravely followed the map in their book. Along the way, they solved riddles, made friends with talking animals, and unlocked the doors to a hidden treasure.
+
+But when they finally reached the treasure, it wasn’t gold or jewels. It was a mirror—one that reflected their kindness, courage, and imagination.`,
     },
     {
       type: "content",
-      image: "https://picsum.photos/300/400?random=4",
-      text: "Facing dragons, witches, and treacherous terrains...",
+      image: "./pic5.jpeg",
+      text: `With a final turn of the page, they were back in their room, the book resting in their hands. The adventure was over—but the magic remained.
+
+They smiled, realizing the truth: every hero has a story… and this one was theirs.`,
     },
     {
       type: "content",
-      image: "https://picsum.photos/300/400?random=5",
-      text: "Sir Galahad's courage never wavered...",
+      image: "./pic6.jpeg",
+      text: `✨ Now it’s your turn! Imagine receiving a book where YOU are the hero, just like Aarav. Upload your photos, choose a theme, and create your own magical adventure!
+
+📖 Your story begins today. Place your order now!`,
     },
-    { type: "backcover", text: "The End", author: "Written by AI Assistant" },
+    { type: "backcover", text: "The End", author: "Writer" },
   ];
 
   useEffect(() => {

@@ -76,8 +76,9 @@
 .page-image {
   width: 100%;
   max-width: 400px;
-  height: 200px;
-  object-fit: cover;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
   border-radius: 10px;
   margin-bottom: 1rem;
 }
