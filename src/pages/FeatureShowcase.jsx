@@ -6,7 +6,7 @@ import {
   FaRobot,
   FaCloud,
 } from "react-icons/fa6";
-
+import "./FeatureShowcase.css";
 const features = [
   {
     icon: <FaWandMagicSparkles />, // Fixed icon

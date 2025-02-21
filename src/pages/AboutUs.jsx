@@ -65,7 +65,7 @@ const AboutUs = () => {
   return (
     <div className="about-us-container">
       <motion.div className="magical-background" style={{ y: backgroundY }} />
-
+      {/*
       <header className="site-header">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
@@ -98,6 +98,7 @@ const AboutUs = () => {
           </motion.a>
         </nav>
       </header>
+*/}
 
       <main className="main-content">
         <motion.h2
