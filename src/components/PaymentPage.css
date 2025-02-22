@@ -1,0 +1,196 @@
+.pp-payment-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.25);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.pp-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
+    0 0 25px rgba(255, 71, 87, 0.7);
+  animation: neonPulse 2s infinite alternate;
+}
+
+.pp-timer {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.pp-methods {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pp-method-btn {
+  padding: 0.8rem 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 71, 87, 0.6);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pp-method-btn.active,
+.pp-method-btn:hover {
+  background: linear-gradient(90deg, #ff4757, #ff9cba);
+  border-color: #ff4757;
+  box-shadow: 0 8px 20px rgba(255, 71, 87, 0.5);
+}
+
+.pp-upi-options {
+  display: flex;
+  gap: 2rem;
+}
+
+.pp-upi-option {
+  text-align: center;
+}
+
+.pp-upi-option h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.pp-bank-details {
+  text-align: center;
+  color: #fff;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.pp-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.pp-popup-content,
+.pp-reference-input {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.pp-popup-content h3 {
+  color: #3a2f2d;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pp-popup-content button,
+.pp-reference-input button {
+  padding: 0.8rem 2rem;
+  margin: 0 0.5rem;
+  background: linear-gradient(90deg, #ff4757, #ff9cba);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pp-popup-content button:hover,
+.pp-reference-input button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 71, 87, 0.5);
+}
+
+.pp-reference-input input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ff4757;
+  border-radius: 10px;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 25px rgba(255, 71, 87, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 25px rgba(255, 255, 255, 1),
+      0 0 45px rgba(255, 71, 87, 0.8);
+  }
+}
+
+@media (max-width: 768px) {
+  .pp-payment-page {
+    padding: 1.5rem;
+  }
+  .pp-title {
+    font-size: 2rem;
+  }
+  .pp-timer {
+    font-size: 1.3rem;
+  }
+  .pp-methods {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .pp-method-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+  }
+  .pp-upi-options {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pp-title {
+    font-size: 1.6rem;
+  }
+  .pp-upi-option h3 {
+    font-size: 1.1rem;
+  }
+  .pp-bank-details {
+    font-size: 1rem;
+  }
+}

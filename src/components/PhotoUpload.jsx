@@ -1,50 +1,92 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import "./PhotoUpload.css";
 
-const PhotoUpload = () => {
-  const [photos, setPhotos] = useState([]);
+const PhotoUpload = ({ photos, setStoryData, onNext, onPrevious }) => {
+  const [dragActive, setDragActive] = useState(false);
 
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    const newPhotos = files.map((file) => URL.createObjectURL(file));
-    setPhotos([...photos, ...newPhotos]);
+  const handlePhotoUpload = (files) => {
+    const newPhotos = Array.from(files);
+    setStoryData((prevData) => ({
+      ...prevData,
+      photos: [...prevData.photos, ...newPhotos],
+    }));
+  };
+
+  const handleFileChange = (event) => {
+    handlePhotoUpload(event.target.files);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setDragActive(false);
+    handlePhotoUpload(event.dataTransfer.files);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setDragActive(true);
+  };
+
+  const handleDragLeave = () => {
+    setDragActive(false);
+  };
+
+  const removePhoto = (indexToRemove) => {
+    setStoryData((prevData) => ({
+      ...prevData,
+      photos: prevData.photos.filter((_, index) => index !== indexToRemove),
+    }));
   };
 
   return (
-    <section className="photo-upload">
-      <h2>Upload Your Photos</h2>
-      <div className="upload-container">
-        <label htmlFor="file-upload" className="upload-button">
-          <motion.span whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            Choose Files
-          </motion.span>
+    <div className="pu-photo-upload">
+      <h2 className="pu-title">Add Your Story Moments</h2>
+      <div
+        className={`pu-upload-area ${dragActive ? "pu-drag-active" : ""}`}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+      >
+        <label htmlFor="photo-input" className="pu-upload-label">
+          <span>Drag & Drop or Click to Upload</span>
+          <input
+            id="photo-input"
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleFileChange}
+          />
         </label>
-        <input
-          type="file"
-          id="file-upload"
-          multiple
-          accept="image/*"
-          onChange={handleFileChange}
-        />
       </div>
-      <div className="photo-grid">
+      <div className="pu-photo-preview">
         {photos.map((photo, index) => (
-          <motion.div
+          <div
             key={index}
-            className="photo-item"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
+            className="pu-photo-item"
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
             <img
-              src={photo || "/placeholder.svg"}
-              alt={`Uploaded photo ${index + 1}`}
+              src={URL.createObjectURL(photo)}
+              alt={`Uploaded preview ${index + 1}`}
             />
-          </motion.div>
+            <button
+              className="pu-remove-button"
+              onClick={() => removePhoto(index)}
+            >
+              ×
+            </button>
+          </div>
         ))}
       </div>
-    </section>
+      <div className="pu-button-group">
+        <button className="pu-previous-button" onClick={onPrevious}>
+          Back
+        </button>
+        <button className="pu-next-button" onClick={onNext}>
+          Forward
+        </button>
+      </div>
+    </div>
   );
 };
 

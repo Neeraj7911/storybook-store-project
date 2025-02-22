@@ -140,6 +140,24 @@ const Header = () => {
                   >
                     Profile
                   </Link>
+                  <Link
+                    to="/payment-status"
+                    onClick={() => {
+                      setShowDropdown(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Check Payment Status
+                  </Link>
+                  <Link
+                    to="/track-order-status"
+                    onClick={() => {
+                      setShowDropdown(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Track Order Status
+                  </Link>
                   <button onClick={handleLogout}>Logout</button>
                 </motion.div>
               )}

@@ -1,32 +1,58 @@
-import { motion } from "framer-motion";
 import "./ThemeSelection.css";
 
-const themes = [
-  "Fairy Tale",
+const storyThemes = [
+  "Love",
+  "Sad",
+  "Hero",
+  "Family",
+  "Friends",
+  "Baby",
   "Adventure",
   "Mystery",
-  "Science Fiction",
   "Fantasy",
+  "Sci-Fi",
   "Historical",
+  "Comedy",
+  "Inspirational",
+  "Nature",
 ];
 
-const ThemeSelection = () => {
+const ThemeSelection = ({ selectedThemes, setStoryData, onNext }) => {
+  const handleThemeToggle = (theme) => {
+    setStoryData((prevData) => ({
+      ...prevData,
+      themes: prevData.themes.includes(theme)
+        ? prevData.themes.filter((t) => t !== theme)
+        : [...prevData.themes, theme],
+    }));
+  };
+
   return (
-    <section className="theme-selection">
-      <h2>Choose Your Story Theme</h2>
-      <div className="theme-grid">
-        {themes.map((theme, index) => (
-          <motion.div
-            key={index}
-            className="theme-item"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+    <>
+      <h2 className="ts-title">Choose Your Story Universe</h2>
+      <div className="ts-theme-grid">
+        {storyThemes.map((theme, index) => (
+          <div
+            key={theme}
+            className={`ts-theme-card ${
+              selectedThemes.includes(theme) ? "ts-selected" : ""
+            }`}
+            onClick={() => handleThemeToggle(theme)}
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
-            {theme}
-          </motion.div>
+            <span className="ts-theme-text">{theme}</span>
+            <div className="ts-glow-effect"></div>
+          </div>
         ))}
       </div>
-    </section>
+      <button
+        className="ts-next-button"
+        onClick={onNext}
+        disabled={selectedThemes.length === 0}
+      >
+        Dive In!
+      </button>
+    </>
   );
 };
 

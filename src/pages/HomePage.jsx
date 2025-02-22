@@ -4,6 +4,7 @@ import BookAnimation from "../components/BookAnimation";
 import ParticleEffect from "../components/ParticleEffect";
 import Modal from "../components/Modal";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -53,16 +54,18 @@ const HomePage = () => {
           >
             Bring your imagination to life with our enchanting storybook creator
           </motion.p>
-          <motion.button
-            className="cta-button"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 0px 8px rgb(255,255,255)",
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Start Your Adventure
-          </motion.button>
+          <Link to="/create">
+            <motion.button
+              className="cta-button"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0px 0px 8px rgb(255,255,255)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Your Adventure
+            </motion.button>
+          </Link>
         </div>
         <BookAnimation onOpenBook={handleOpenBook} />
       </section>
@@ -78,6 +81,7 @@ const HomePage = () => {
             <li>Review and customize your book</li>
             <li>Order your personalized storybook</li>
           </ol>
+
           <button
             className="start-journey-button"
             onClick={() => setIsModalOpen(false)}

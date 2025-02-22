@@ -1,0 +1,151 @@
+.tos-track-order-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.25);
+  margin: 2rem auto;
+}
+
+.tos-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
+    0 0 25px rgba(255, 71, 87, 0.7);
+  animation: neonPulse 2s infinite alternate;
+}
+
+.tos-error {
+  color: #ff3333;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.tos-orders-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tos-order-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 248, 220, 0.1)
+  );
+  border: 2px solid rgba(255, 71, 87, 0.6);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tos-order-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(255, 71, 87, 0.5);
+}
+
+.tos-order-card h3 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.tos-status-bar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.tos-status-indicator {
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  transition: width 1s ease-in-out;
+}
+
+.tos-status-text {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.tos-status-text span {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.tos-status-message {
+  color: #fff;
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.tos-order-card p {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 25px rgba(255, 71, 87, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 25px rgba(255, 255, 255, 1),
+      0 0 45px rgba(255, 71, 87, 0.8);
+  }
+}
+
+@media (max-width: 768px) {
+  .tos-track-order-status {
+    padding: 1.5rem;
+  }
+  .tos-title {
+    font-size: 2.2rem;
+  }
+  .tos-order-card {
+    padding: 1.2rem;
+  }
+  .tos-order-card h3 {
+    font-size: 1.5rem;
+  }
+  .tos-status-bar {
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tos-title {
+    font-size: 1.8rem;
+  }
+  .tos-order-card {
+    padding: 1rem;
+  }
+  .tos-order-card p {
+    font-size: 1rem;
+  }
+}

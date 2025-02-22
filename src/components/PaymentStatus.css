@@ -1,0 +1,127 @@
+.ps-payment-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.25);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.ps-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
+    0 0 25px rgba(255, 71, 87, 0.7);
+  animation: neonPulse 2s infinite alternate;
+}
+
+.ps-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 71, 87, 0.8);
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ps-input:focus {
+  outline: none;
+  border-color: #ff4757;
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+}
+
+.ps-check-button {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(90deg, #ff4757, #ff9cba);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(255, 71, 87, 0.5);
+}
+
+.ps-check-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 71, 87, 0.7);
+  background: linear-gradient(90deg, #ff9cba, #ff4757);
+}
+
+.ps-check-button:disabled {
+  background: #888;
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ps-result {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-top: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 25px rgba(255, 71, 87, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 25px rgba(255, 255, 255, 1),
+      0 0 45px rgba(255, 71, 87, 0.8);
+  }
+}
+
+@media (max-width: 768px) {
+  .ps-payment-status {
+    padding: 1.5rem;
+  }
+  .ps-title {
+    font-size: 2rem;
+  }
+  .ps-input {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  .ps-check-button {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ps-title {
+    font-size: 1.6rem;
+  }
+  .ps-result {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0e6d2;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+header,
+footer {
+  flex-shrink: 0;
+  background-color: #3a2f2d;
+  color: #fff8dc;
+  padding: 10px;
+  text-align: center;
+}
+
+.sc-story-creator {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 2rem;
+  background-size: cover, 100% 100%;
+  background-position: center;
+  background-repeat: repeat, no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-y: auto;
+  transition: background 0.5s ease;
+}
+
+.sc-story-creator h1 {
+  color: #3a2f2d;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  z-index: 1;
+}
+
+.sc-story-creator h2 {
+  color: #3a2f2d;
+  text-align: center;
+  font-size: 1.8em;
+  margin: 20px 0 15px;
+}
+
+.sc-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.sc-theme-button {
+  padding: 10px;
+  border: 2px solid #8b4513;
+  background-color: #fff8dc;
+  color: #8b4513;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.sc-theme-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+}
+
+.sc-theme-button.selected {
+  background-color: #8b4513;
+  color: #fff8dc;
+}
+
+textarea,
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #d4a76a;
+  border-radius: 10px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+  max-width: 600px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: #8b4513;
+}
+
+.sc-option {
+  margin-bottom: 15px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.sc-option label {
+  display: block;
+  margin-bottom: 5px;
+  color: #3a2f2d;
+  font-weight: bold;
+}
+
+.sc-button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.sc-next-button,
+.sc-previous-button,
+.sc-create-story-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  flex: 1;
+}
+
+.sc-next-button,
+.sc-create-story-button {
+  background-color: #8b4513;
+  color: #fff8dc;
+}
+
+.sc-previous-button {
+  background-color: #d4a76a;
+  color: #3a2f2d;
+}
+
+.sc-next-button:hover,
+.sc-previous-button:hover,
+.sc-create-story-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.sc-next-button:disabled,
+.sc-create-story-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.sc-success-message {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.sc-error-message {
+  background-color: #f44336;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.sc-loading-message {
+  text-align: center;
+  color: #8b4513;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.sc-login-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #3a2f2d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .sc-story-creator {
+    padding: 1.5rem;
+  }
+
+  .sc-story-creator h1 {
+    font-size: 2.2rem;
+  }
+
+  .sc-story-creator h2 {
+    font-size: 1.4em;
+  }
+
+  .sc-theme-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .sc-theme-button {
+    font-size: 0.8em;
+    padding: 8px;
+  }
+
+  .sc-button-group {
+    flex-direction: column;
+  }
+
+  .sc-next-button,
+  .sc-previous-button,
+  .sc-create-story-button {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+}
