@@ -9,6 +9,7 @@ import ProfilePage from "./pages/ProfilePage";
 import CustomCursor from "./components/CustomCursor";
 //import Background3D from "./components/Background3D";
 //import BookAnimation from "./components/BookAnimation";
+import ChatWidget from "./components/ChatWidget.jsx"; // Import ChatWidget
 import "./App.css";
 import Explore from "./pages/ExplorePage";
 import AboutUs from "./pages/AboutUs";
@@ -23,7 +24,6 @@ function App() {
       <AuthProvider>
         <div className="App">
           <CustomCursor />
-
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -39,6 +39,7 @@ function App() {
 
             <Route path="/track-order-status" element={<TrackOrder />} />
           </Routes>
+          <ChatWidget /> {/* Add ChatWidget here */}
           <Footer />
         </div>
       </AuthProvider>

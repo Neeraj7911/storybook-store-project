@@ -3,12 +3,16 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
-  signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
   updateProfile,
+  getRedirectResult,
 } from "firebase/auth";
+import io from "socket.io-client";
 import { auth } from "../firebase/config";
 import "./SignupPage.css";
+
+const socket = io("http://localhost:3000");
 
 const BackgroundEffect = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -17,22 +21,15 @@ const BackgroundEffect = () => {
     const handleMouseMove = (event) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
     };
-
     window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <div className="background-effect">
       <div
         className="glow"
-        style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-        }}
+        style={{ left: mousePosition.x, top: mousePosition.y }}
       ></div>
     </div>
   );
@@ -45,6 +42,24 @@ const SignupPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Handle redirect result after Google signup
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          const user = result.user;
+          socket.emit("signup", {
+            name: user.displayName || "New User",
+            email: user.email,
+          });
+          navigate("/profile");
+        }
+      })
+      .catch((error) => {
+        setError("Failed to sign up with Google. " + error.message);
+      });
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -56,20 +71,7 @@ const SignupPage = () => {
       );
       await updateProfile(userCredential.user, { displayName: name });
 
-      // Send welcome email
-      const response = await fetch("/api/send-welcome-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, name }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to send welcome email");
-      }
-
+      socket.emit("signup", { name, email });
       navigate("/profile");
     } catch (error) {
       setError("Failed to create an account. " + error.message);
@@ -79,28 +81,11 @@ const SignupPage = () => {
   const handleGoogleSignup = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      const result = await signInWithPopup(auth, provider);
-
-      // Send welcome email for Google sign-up
-      const response = await fetch("/api/send-welcome-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: result.user.email,
-          name: result.user.displayName || "New User",
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to send welcome email");
-      }
-
-      navigate("/profile");
+      setError("");
+      await signInWithRedirect(auth, provider);
+      // Redirect handling is done in useEffect
     } catch (error) {
-      setError("Failed to sign up with Google. " + error.message);
+      setError("Failed to initiate Google signup. " + error.message);
     }
   };
 
